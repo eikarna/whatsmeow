@@ -285,7 +285,7 @@ func (cli *Client) SendMessage(ctx context.Context, to types.JID, message *waE2E
 	if to.Server == types.GroupServer || to.Server == types.BroadcastServer {
 		start := time.Now()
 		if to.Server == types.GroupServer {
-			var cachedData *groupMetaCache
+			/*var cachedData *groupMetaCache
 			cachedData, err = cli.getCachedGroupData(ctx, to)
 			if err != nil {
 				err = fmt.Errorf("failed to get group members: %w", err)
@@ -304,7 +304,8 @@ func (cli *Client) SendMessage(ctx context.Context, to types.JID, message *waE2E
 				ownID = cli.getOwnLID()
 				// Why is this set to PN?
 				extraParams.addressingMode = types.AddressingModePN
-			}
+			}*/
+			groupParticipants = []types.JID{ownID}
 		} else {
 			groupParticipants, err = cli.getBroadcastListParticipants(ctx, to)
 			if err != nil {
